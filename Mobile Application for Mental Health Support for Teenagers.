@@ -1,0 +1,54 @@
+import random
+
+def ask_question(question, correct_answer):
+    answer = input(question + " ").strip().lower()
+    return answer == correct_answer.lower()
+
+def quiz():
+    print("Welcome to my Mini Quiz!")
+
+    # Ask for user's name
+    name = input("Enter your name: ").strip()
+    if name == "":
+        name = "Player"
+
+    print(f"\nHello, {name}! Let's start the quiz!\n")
+
+    # List of quiz questions
+    questions = [
+        ("What is the capital of France?", "Paris"),
+        ("What is 5 x 6?", "30"),
+        ("What planet is known as the Red Planet?", "Mars"),
+        ("What is the largest animal in the world?", "Blue Whale"),
+        ("How many continents are there?", "7"),
+        ("What is H2O commonly known as?", "Water")
+    ]
+
+    # Shuffle questions for randomness
+    random.shuffle(questions)
+
+    score = 0
+    total_questions = 3
+
+    # Ask first 3 shuffled questions
+    for i in range(total_questions):
+        q, ans = questions[i]
+        print(f"{i + 1}. {q}")
+        if ask_question("Your answer:", ans):
+            print("Correct!\n")
+            score += 1
+        else:
+            print(f"Wrong! The correct answer is {ans}.\n")
+
+    # Final score display
+    print(f"{name}, you got {score} out of {total_questions} correct!")
+
+    if score == total_questions:
+        print("Amazing! You got them all right!")
+    elif score > 0:
+        print("Nice try, you did well!")
+    else:
+        print("Better luck next time!")
+
+# Run the quiz
+quiz()
